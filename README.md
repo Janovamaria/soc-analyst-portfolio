@@ -1,4 +1,4 @@
-Case 2: RDP Brute Force Detected (Event ID 234)
+Case 1: RDP Brute Force Detected (Event ID 234)
 
 Alert Type: Network / Brute Force | Target Port: 3389 (RDP)
 
