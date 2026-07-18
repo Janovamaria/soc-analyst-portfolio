@@ -1,0 +1,18 @@
+## Case 2: Malicious Macro Executed (SOC205)
+
+**Alert Type:** Malware | **Severity:** Medium | **Event ID:** 231
+
+**Summary:**
+Investigated an alert triggered when a macro-enabled Word document (`edit1-invoice.docm`) was downloaded and executed on an internal endpoint (hostname: `Jayne`, IP: `172.16.17.198`). The file's macro ran, and the endpoint's AV/EDR flagged it as suspicious.
+
+**Investigation Steps:**
+- Reviewed alert details: file name, file path (`C:\Users\LetsDefend\Downloads\edit1-invoice.docm`), file hash, and hostname
+- Submitted the file hash to VirusTotal for reputation analysis: **28 out of 63 antivirus engines flagged the file as malicious** — a high-confidence indicator of genuine malware, well above the threshold typically used to confirm a true positive
+- Noted the AV/EDR action was **"Detected," not blocked/quarantined** — meaning the macro likely executed before being flagged, making this more urgent than an alert stopped in advance
+- Assessed recommended response actions for an actively executed malware case
+
+**Findings:**
+- File confirmed malicious via multi-engine reputation lookup (28/63 detections)
+- Endpoint execution occurred prior to detection
+
+**Conclusion:** True Positive — confirmed malicious macro executed on an internal endpoint. Recommended immediate isolation of the affected endpoint from the network, removal/quarantine of the malicious file, review of subsequent process/network activity on the host for signs of further compromise, and identification of the delivery source (likely phishing email) to block future attempts.
